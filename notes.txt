@@ -29,8 +29,8 @@ si la version apache2 est >=2.4, remplacer
 	granted all require
 
 -- ajouter le user mysql
-mysql> CREATE USER 'tcAdmin'@'localhost' IDENTIFIED BY 'tc@inserm2014';
-mysql> GRANT ALL PRIVILEGES ON *.* TO 'tcAdmin'@'localhost'
+mysql> CREATE USER 'tcUser'@'localhost' IDENTIFIED BY 'tc@mypass';
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'tcUser'@'localhost'
          WITH GRANT OPTION;
 
 ----Pour la mise en palce des tests
