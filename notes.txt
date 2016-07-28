@@ -1,0 +1,56 @@
+-- install yii from scratch
+/data/developpement/workspace_zend_eclipse_php/transcoder/transcoder/yii-1.1.14/framework/yiic webapp /data/developpement/workspace_zend_eclipse_php/transcoder/transcoder
+--creer un alias de dir dans sites-enabled
+vi /etc/apache2/site-enabled/000-default
+
+-- sous environnements unix, ne pas oublier de mettre les droits d ecriture sur le repertoires runtime et assets
+nicolas$ cd protected/
+nicolas$ sudo chmod ugo+rwx runtime/
+nicolas$ sudo chmod ugo+rwx ../assets/
+
+--
+Alias /transcoder "/Users/nicolas/NetBeansProjects/transcoder/transcoder/"
+<Directory "/Users/nicolas/NetBeansProjects/transcoder/transcoder/">
+	Options FollowSymLinks Indexes
+	AllowOverride all
+	Order allow,deny
+	allow from all
+	#deny from all
+	AddDefaultCharset utf-8 
+</Directory>
+
+--ATTENTION--
+si la version apache2 est >=2.4, remplacer
+	Order allow,deny
+	allow from all
+	#deny from all
+	
+	par
+	granted all require
+
+-- ajouter le user mysql
+mysql> CREATE USER 'tcAdmin'@'localhost' IDENTIFIED BY 'tc@inserm2014';
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'tcAdmin'@'localhost'
+         WITH GRANT OPTION;
+
+----Pour la mise en palce des tests
+--Téléchargement du serveur selenium standalone
+http://selenium-release.storage.googleapis.com/2.41/selenium-server-standalone-2.41.0.jar
+
+--installer phpunit : 
+sudo pear channel-discover pear.phpunit.de
+
+sudo pear install -f phpunit/PHPUnit-3.7.0
+sudo pear install -f phpunit/phpunit_story
+sudo pear install -f phpunit/phpunit_selenium
+sudo pear install -f phpunit/dbunit
+
+
+Code coverage
+sudo pecl install -f xdebug 
+
+Des modifications de configurations sont à faire dans les fichiers scripts/launchTests.sh et /protected/tests/phpunit.xml
+
+--appliquer les scripts en prod :
+source /var/www/vhosts/de1185.ispfr.net/transcoderapp/protected/data/dump_transcoder_v0.1.sql
+ 

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="transcoder" default="build">
+     
+    <target name="build"
+            depends="prepare,lint,phpunit,phpcpd"/>
+
+    <target name="clean" description="Cleanup build artifacts">
+        <delete dir="${basedir}/build/api"/>
+        <delete dir="${basedir}/build/coverage"/>
+        <delete dir="${basedir}/build/coverage_clover"/>
+        <delete dir="${basedir}/build/logs"/>
+        <delete dir="${basedir}/build/pdepend"/>
+    </target>
+
+    <target name="prepare" depends="clean" description="Prepare for build">
+        <mkdir dir="${basedir}/build/api"/>
+        <mkdir dir="${basedir}/build/coverage"/>
+        <mkdir dir="${basedir}/build/coverage_clover"/>
+        <mkdir dir="${basedir}/build/logs"/>
+        <mkdir dir="${basedir}/build/pdepend"/>
+        <mkdir dir="${basedir}/build/phpdox"/>
+    </target>
+
+    <!-- lint : validator and documentor for php-->
+    <!-- this configuration will only check src files in foleder /transcoder/protected -->
+    <target name="lint" description="Perform syntax check of sourcecode files">
+        <apply executable="php" failonerror="true">
+            <arg value="-l" />
+            <fileset dir="${basedir}/transcoder/protected/">
+                <include name="**/*.php" />
+                <modified />
+            </fileset>
+        </apply>
+    </target>
+
+    <!-- PHPUnit : unit testing for php class files -->
+    <!-- fail on error indicate that the build will fail if a test failed -->
+    <!-- read the configuration phpunit.xml at the folder root -->
+    <target name="phpunit" description="Run unit tests with PHPUnit">
+        <exec dir="${basedir}" executable="${basedir}/vendor/bin/phpunit" failonerror="true">
+            <arg line=" --coverage-html ./build/coverage --coverage-clover ./build/coverage_clover/coverage.xml ${basedir}/transcoder/protected/tests/" />
+        </exec>
+    </target>
+
+    <!-- call phpcpd target to check code duplicated -->
+    <target name="phpcpd" description="Find duplicate code using PHPCPD">
+        <exec executable="${basedir}/vendor/bin/phpcpd" >
+            <arg value="--log-pmd" />
+            <arg value="${basedir}/build/logs/pmd-cpd.xml" />
+            <arg path="${basedir}/transcoder/protected/" />
+        </exec>
+    </target>
+ 
+    <!-- call phpmd to get quality metrics-->
+    <target name="phpmd"
+            description="Perform project mess detection using PHPMD and print human readable output. Intended for usage on the command line before committing.">
+        <exec executable="${basedir}/vendor/bin/phpmd">
+            <arg path="${basedir}/transcoder/protected/" />
+            <arg value="text" />
+            <arg value="${basedir}/phpmd.xml" />
+        </exec>
+    </target>
+<!-- call phpmd to get quality metrics in jenkins environment-->
+    <target name="phpmd-ci" description="Perform project mess detection using PHPMD creating a log file for the continuous integration server">
+        <exec executable="${basedir}/vendor/bin/phpmd">
+            <arg path="${basedir}/transcoder/protected/" />
+            <arg value="xml" />
+            <arg value="${basedir}/phpmd.xml" />
+            <arg value="--reportfile" />
+            <arg value="${basedir}/build/logs/pmd.xml" />
+        </exec>
+    </target>
+</project>

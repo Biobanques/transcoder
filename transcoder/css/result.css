@@ -1,0 +1,85 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 31 mars 2014, 17:45:10
+    Author     : matthieu
+*/
+div.result .partialSummary
+{
+	border: 2px solid;
+        border-color: orange;
+	padding: 7px 7px 12px 7px;
+	margin: 0 0 20px 0;
+	background: #DDD;
+	font-size: 1.2em;
+        color:black;
+}
+div.result .partialSummary h5
+{
+   color:orange;
+
+       font-size:1.1em;
+       text-align: center;
+}
+
+div.result .partialSummary h6
+{
+   color:black;
+
+       font-size:1.1em;
+}
+div.result .successSummary
+{
+	border: 2px solid ;
+        border-color: green;
+	padding: 7px 7px 12px 7px;
+	margin: 0 0 20px 0;
+	background: #DDD;
+	font-size: 1.2em;
+        color:black;
+}
+div.result .successSummary h5
+{
+   color:green;
+
+       font-size:1.1em;
+       text-align: center;
+}
+
+div.result .successSummary h6
+{
+   color:black;
+
+       font-size:1.1em;
+}
+
+
+div.result .errorSummary
+{
+	border: 2px solid ;
+            border-color: #C00;
+            
+	padding: 7px 7px 12px 7px;
+	margin: 0 0 20px 0;
+	background: #DDD;
+	font-size: 1.2em;
+        color:black;
+}
+div.result .errorSummary h5
+{
+   color:red;
+
+       font-size:1.1em;
+       text-align: center;
+}
+div.result{
+}
+div.result .errorSummary h6
+{
+   color:black;
+
+       font-size:1.1em;
+}
