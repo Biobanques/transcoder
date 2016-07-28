@@ -45,8 +45,8 @@ return array(
         'db' => array(
             'connectionString' => 'mysql:host=localhost;dbname=transcoder',
             'emulatePrepare' => true,
-            'username' => 'tcAdmin',
-            'password' => 'tc@inserm2014',
+            'username' => 'tcUser',
+            'password' => 'tc@mypass',
             'charset' => 'utf8',
         ),
         'errorHandler' => array(

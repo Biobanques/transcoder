@@ -2,3 +2,4 @@
 /nbproject/private/
 /build/
 /transcoder/protected/runtime/
+/transcoder/protected/config/main_prod.php
