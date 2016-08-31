@@ -3,9 +3,9 @@ machine:
     php:
         version: 5.6.22
     post:
-        - mkdir ./transcoder/assets
-        - mkdir ./transcoder/protected/runtime
-        - chmod 777 -R ./transcoder/protected/runtime
-        - chmod 777 -R ./transcoder/assets
+        - mkdir /home/ubuntu/transcoder/transcoder/assets
+        - mkdir /home/ubuntu/transcoder/transcoder/protected/runtime
+        - chmod 777 -R /home/ubuntu/transcoder/transcoder/protected/runtime
+        - chmod 777 -R /home/ubuntu/transcoder/transcoder/assets
 
 
