@@ -13,3 +13,4 @@ return CMap::mergeArray(
                 'docsPath' => '../../protected/data/',
             ),
         ));
+

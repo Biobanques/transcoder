@@ -13,7 +13,7 @@ database:
     - mysql -u ubuntu circle_test < /home/ubuntu/transcoder/transcoder/protected/data/dump_transcoder_v0.1.sql
 
 test:
-    override:
-        - phpunit -c /home/ubuntu/transcoder/phpunit.xml --coverage-html $CIRCLE_ARTIFACTS/report/
+    post:
+        - cp -a /home/ubuntu/transcoder/transcoder/protected/tests/report/ $CIRCLE_ARTIFACTS/report/
         
 
