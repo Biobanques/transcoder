@@ -1,6 +1,12 @@
 <?php
 
-class EJsonBehavior extends CBehavior {
+/**
+ * Behavior extension
+ * This behavior add export in json format with related objects.
+ * Used for ws api response
+ */
+class EJsonBehavior extends CBehavior
+{
     private $owner;
     private $relations;
 
@@ -9,8 +15,7 @@ class EJsonBehavior extends CBehavior {
         foreach ($array as $arrayPart) {
             if (is_array($arrayPart)) {
                 $result[] = $this->getArrayRec($arrayPart);
-            }
-            else
+            } else
             if (is_object($arrayPart))
                 $result[] = $this->toJSONObj($arrayPart);
             else
@@ -31,8 +36,7 @@ class EJsonBehavior extends CBehavior {
         $result = array();
         if (is_subclass_of($this->owner, 'CActiveRecord')) {
             $result = $this->toJSONObj($this->owner);
-        }
-        elseif (isset($this->owner->arrayObj) && is_array($this->owner->arrayObj)) {
+        } elseif (isset($this->owner->arrayObj) && is_array($this->owner->arrayObj)) {
             $result = $this->getArrayRec($this->owner->arrayObj);
         }
         if (count($result) > 0)
@@ -50,12 +54,10 @@ class EJsonBehavior extends CBehavior {
                 foreach ($obj as $objPart) {
                     $related[$name][$objPart->getPrimaryKey()]['attributes'] = $objPart instanceof CActiveRecord ? $objPart->getAttributes() : $objPart;
                     $related[$name][$objPart->getPrimaryKey()]['related'] = $objPart instanceof CActiveRecord ? $this->getSubRelated($objPart) : $objPart;
-                }
-            elseif ($obj instanceof CActiveRecord) {
+                } elseif ($obj instanceof CActiveRecord) {
                 $related[$name]['attributes'] = $obj->getAttributes();
                 $related[$name]['related'] = $this->getSubRelated($obj);
-            }
-            elseif (is_array($obj) && count($obj) == 1) {
+            } elseif (is_array($obj) && count($obj) == 1) {
                 $related[$name]['attributes'] = $obj[0] instanceof CActiveRecord ? $obj[0]->getAttributes() : $obj[0];
                 $related[$name]['related'] = $obj[0] instanceof CActiveRecord ? $this->getSubRelated($obj[0]) : $obj[0];
             }

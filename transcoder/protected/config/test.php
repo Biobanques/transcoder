@@ -7,5 +7,9 @@ return CMap::mergeArray(
                     'class' => 'system.test.CDbFixtureManager',
                 ),
             ),
-                )
-);
+            'params' => array(
+                // this is used in contact page
+                'adminEmail' => 'nicolas.malservet@inserm.fr',
+                'docsPath' => '../../protected/data/',
+            ),
+        ));

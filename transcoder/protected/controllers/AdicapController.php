@@ -54,6 +54,10 @@ class AdicapController extends Controller
         );
     }
 
+    /**
+     * WS API.
+     * Used to return json representation of translation result
+     */
     public function actionWsSearch() {
         $this->modelForm = new CodeForm('search');
         $result = new ExtendedArray();
@@ -61,8 +65,11 @@ class AdicapController extends Controller
 
         $code = isset($_GET['code']) ? $_GET['code'] : '';
         $codeFac = isset($_GET['codeFac']) ? $_GET['codeFac'] : '';
+        try {
+            header('Content-type: application/json');
+        } catch (Exception $ex) {
 
-        header('Content-type: application/json');
+        }
         $result->arrayObj = $this->modelForm->searchWithCode($code, $codeFac);
         echo $result->toJSON();
     }

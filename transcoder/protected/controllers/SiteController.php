@@ -1,6 +1,5 @@
 <?php
 
-/**      @codeCoverageIgnore     */
 class SiteController extends Controller
 {
     /**
@@ -10,13 +9,13 @@ class SiteController extends Controller
     /**      @codeCoverageIgnore     */
     public function actions() {
         return array(
-            // captcha action renders the CAPTCHA image displayed on the contact page
+// captcha action renders the CAPTCHA image displayed on the contact page
             'captcha' => array(
                 'class' => 'CCaptchaAction',
                 'backColor' => 0xFFFFFF,
             ),
             // page action renders "static" pages stored under 'protected/views/site/pages'
-            // They can be accessed via: index.php?r=site/page&view=FileName
+// They can be accessed via: index.php?r=site/page&view=FileName
             'page' => array(
                 'class' => 'CViewAction',
             ),
@@ -27,11 +26,9 @@ class SiteController extends Controller
      * This is the default 'index' action that is invoked
      * when an action is not explicitly requested by users.
      */
-
-    /**      @codeCoverageIgnore     */
     public function actionIndex() {
-        // renders the view file 'protected/views/site/index.php'
-        // using the default layout 'protected/views/layouts/main.php'
+// renders the view file 'protected/views/site/index.php'
+// using the default layout 'protected/views/layouts/main.php'
         $this->render('index');
     }
 
@@ -54,11 +51,16 @@ class SiteController extends Controller
 
     /**
      * fonction de téléchargements des différents docs utiles
-     */
+     *          @codeCoverageIgnore    */
     public function actionDownload() {
         if (isset($_GET['file'])) {
             $file = $_GET['file'];
-            Yii::app()->getRequest()->sendFile($file, file_get_contents(Yii::app()->params->docsPath . $file));
+//            try {
+            Yii::app()->getRequest()->sendFile($file, file_get_contents(Yii::app()->params->docsPath . $file), null, true);
+//            } catch (Exception $ex) {
+//
+//                Yii::log($ex->getMessage(), CLogger::LEVEL_ERROR);
+//            }
         }
     }
 
@@ -81,6 +83,8 @@ class SiteController extends Controller
      */
     public function actionContact() {
         $model = new ContactForm;
+        //@codeCoverageIgnoreStart
+
         if (isset($_POST['ContactForm'])) {
             $model->attributes = $_POST['ContactForm'];
             if ($model->validate()) {
@@ -96,9 +100,13 @@ class SiteController extends Controller
                 $this->refresh();
             }
         }
+        //@codeCoverageIgnoreEnd
         $this->render('contact', array('model' => $model));
     }
 
+    /**
+     * Page de remerciements
+     */
     public function actionThanks() {
         $this->render('remerciements');
     }
