@@ -6,7 +6,6 @@
 
 class CommonProperties
 {
-    static $CONNECTIONSTRING = "mysql:host=localhost;dbname=circle_test";
+    static $CONNECTIONSTRING = "mysql:host=localhost;dbname=transcoder";
     static $CONNECTIONUSER = "ubuntu";
-    static $CONNECTIONPASSWORD = null;
 }

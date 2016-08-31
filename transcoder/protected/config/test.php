@@ -6,6 +6,12 @@ return CMap::mergeArray(
                 'fixture' => array(
                     'class' => 'system.test.CDbFixtureManager',
                 ),
+                'db' => array(
+                    'connectionString' => CommonProperties::$CONNECTIONSTRING,
+                    'emulatePrepare' => true,
+                    'username' => CommonProperties::$CONNECTIONUSER,
+                    'charset' => 'utf8',
+                ),
             ),
             'params' => array(
                 // this is used in contact page

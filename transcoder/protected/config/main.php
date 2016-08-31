@@ -46,7 +46,7 @@ return array(
             'connectionString' => CommonProperties::$CONNECTIONSTRING,
             'emulatePrepare' => true,
             'username' => CommonProperties::$CONNECTIONUSER,
-            'password' => CommonProperties::$CONNECTIONPASSWORD,
+            'password' => isset(CommonProperties::$CONNECTIONPASSWORD) ? CommonProperties::$CONNECTIONPASSWORD : null,
             'charset' => 'utf8',
         ),
         'errorHandler' => array(
