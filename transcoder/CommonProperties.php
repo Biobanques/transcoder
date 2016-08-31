@@ -8,7 +8,7 @@
 
 class CommonProperties
 {
-    static $CONNECTIONSTRING = "mysql:host=localhost;dbname=transcoder";
+    static $CONNECTIONSTRING = "mysql:host=127.0.0.1;dbname=transcoder";
     static $CONNECTIONUSER = "root";
     static $CONNECTIONPASSWORD = "root";
 }
