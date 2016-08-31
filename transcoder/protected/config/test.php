@@ -10,6 +10,7 @@ return CMap::mergeArray(
                     'connectionString' => CommonProperties::$CONNECTIONSTRING,
                     'emulatePrepare' => true,
                     'username' => CommonProperties::$CONNECTIONUSER,
+                    'password' => CommonProperties::$CONNECTIONPASSWORD,
                     'charset' => 'utf8',
                 ),
             ),
