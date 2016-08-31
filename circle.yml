@@ -1,0 +1,11 @@
+## YAML Template.
+machine:
+    php:
+        version: 5.6
+    post:
+        command: mkdir ./transcoder/assets
+        command: mkdir ./transcoder/protected/runtime
+        command: chmod 777 -R ./transcoder/protected/runtime
+        command: chmod 777 -R ./transcoder/assets
+
+
