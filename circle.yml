@@ -6,5 +6,10 @@ machine:
         - mkdir /home/ubuntu/transcoder/transcoder/protected/runtime
         - chmod 777 -R /home/ubuntu/transcoder/transcoder/protected/runtime
         - chmod 777 -R /home/ubuntu/transcoder/transcoder/assets
+        - mv /home/ubuntu/transcoder/transcoder/CommonPropertiesTest.php /home/ubuntu/transcoder/transcoder/CommonProperties.php
+        
+database:
+  override:
+    - mysql -u ubuntu circle_test < /home/ubuntu/transcoder/transcoder/protected/data/dump_transcoder_v0.1.sql
 
 
