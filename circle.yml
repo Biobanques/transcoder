@@ -14,6 +14,6 @@ database:
 
 test:
     override:
-        - phpunit /home/ubuntu/transcoder/phpunit.xml --coverage-html $CIRCLE_ARTIFACTS/report/
+        - phpunit -c /home/ubuntu/transcoder/phpunit.xml --coverage-html $CIRCLE_ARTIFACTS/report/
         
 
