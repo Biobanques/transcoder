@@ -38,4 +38,18 @@ class AdicapControllerTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($controller->viewData != null);
     }
 
+    public function testWsSearch() {
+        $controller = new AdicapController('ADICAP');
+
+        $this->assertTrue($controller != null);
+        $this->assertInstanceOf('AdicapController', $controller);
+        $this->assertTrue($controller->modelForm == null);
+        $controller->actionWsSearch();
+        $this->assertTrue($controller->modelForm != null);
+        $_GET['CodeForm'] = array('codeOblig' => null, 'codeFacult' => null);
+        $controller->actionWsSearch();
+        $this->assertTrue($controller->modelForm != null);
+        $this->assertTrue($controller->viewData == null);
+    }
+
 }

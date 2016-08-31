@@ -33,6 +33,7 @@ class ADICAPTest extends PHPUnit_Framework_TestCase
 
     public function testGetCimLibelles() {
         //$this->setUp();
+
         $adicap = $this->adicap;
         $this->assertEquals("", $adicap->getCimLibelles());
         $crit = new CDbCriteria();

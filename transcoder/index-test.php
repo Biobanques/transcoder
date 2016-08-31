@@ -10,7 +10,7 @@ $config = dirname(__FILE__) . '/protected/config/test.php';
 
 // remove the following line when in production mode
 defined('YII_DEBUG') or define('YII_DEBUG', true);
-
+include dirname(__FILE__) . '/CommonProperties.php';
 require_once($yii);
 
 Yii::createWebApplication($config)->run();

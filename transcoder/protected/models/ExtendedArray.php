@@ -3,8 +3,8 @@
 /**
 
  */
-class ExtendedArray extends CModel {
-
+class ExtendedArray extends CModel
+{
     public $arrayObj;
 
     public function behaviors() {
@@ -19,6 +19,9 @@ class ExtendedArray extends CModel {
         $this->attachBehaviors($this->behaviors());
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function attributeNames() {
 
     }
