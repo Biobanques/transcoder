@@ -43,10 +43,10 @@ return array(
           ),
          */
         'db' => array(
-            'connectionString' => 'mysql:host=localhost;dbname=transcoder',
+            'connectionString' => CommonProperties::$CONNECTIONSTRING,
             'emulatePrepare' => true,
-            'username' => 'tcUser',
-            'password' => 'tc@mypass',
+            'username' => CommonProperties::$CONNECTIONUSER,
+            'password' => CommonProperties::$CONNECTIONPASSWORD,
             'charset' => 'utf8',
         ),
         'errorHandler' => array(

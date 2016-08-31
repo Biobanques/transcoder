@@ -8,5 +8,5 @@ class CommonProperties
 {
     static $CONNECTIONSTRING = "mysql:host=localhost;dbname=circle_test";
     static $CONNECTIONUSER = "ubuntu";
-    static $CONNECTIONPASSWORD = "";
+    static $CONNECTIONPASSWORD = null;
 }
