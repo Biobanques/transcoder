@@ -12,8 +12,11 @@ database:
   override:
     - mysql -u ubuntu circle_test < /home/ubuntu/transcoder/transcoder/protected/data/dump_transcoder_v0.1.sql
 
-test:
-    post:
-        - cp -a /home/ubuntu/transcoder/transcoder/protected/tests/report/ $CIRCLE_ARTIFACTS/report/
+general:
+  artifacts:
+      -/home/ubuntu/transcoder/transcoder/protected/tests/report/
+#test:
+#    post:
+#        - cp -a /home/ubuntu/transcoder/transcoder/protected/tests/report/ $CIRCLE_ARTIFACTS/report/
         
 
