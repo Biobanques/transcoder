@@ -3,5 +3,5 @@
 /build/
 /transcoder/protected/runtime/
 /transcoder/protected/config/main_prod.php
-/transcoder/protected/docs/
 /transcoder/protected/tests/report/
+/transcoder/assets/

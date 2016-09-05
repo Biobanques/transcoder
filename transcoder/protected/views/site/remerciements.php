@@ -4,7 +4,7 @@ $this->pageTitle = Yii::app()->name;
 /* @var $modelForm codeForm */
 ?>
 
-<h2><?php echo Yii::t('common', 'thanks') ?></h2>
+<h1><?php echo Yii::t('common', 'thanks') ?></h1>
 <?php
 $cont = Contributors::getContributors();
 echo '<ul>';

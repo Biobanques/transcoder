@@ -12,7 +12,7 @@
             if (!is_dir(Yii::app()->params->docsPath . $file)) {
 
                 echo '<li>' . CHtml::link($file, Yii::app()->createUrl('site/download', array('file' => $file))) . '</li>';
-            } else {
+            } else if ($file != 'apps') {//remove apps files
                 echo '<li>' . CHtml::link("&ltREP&gt  $file  &ltREP&gt", Yii::app()->createUrl('site/docs', array('file' => $file))) . '</li>';
             }
         }

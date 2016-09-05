@@ -4,6 +4,9 @@
         "phpunit/dbunit": ">=1.2",
         "phpunit/php-invoker": "*",
         "sebastian/phpcpd": "*",
-        "phpmd/phpmd" : "2.0.*"
+        "phpmd/phpmd" : "2.0.*",
+        "facebook/webdriver":"*",
+          "phpunit/php-code-coverage": "*"
     }
+
 }
