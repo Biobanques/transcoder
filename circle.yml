@@ -4,6 +4,7 @@ machine:
         version: 5.6.22
     post:
         - mkdir /home/ubuntu/transcoder/transcoder/protected/runtime
+        - mkdir /home/ubuntu/transcoder/transcoder/assets
         - chmod 777 -R /home/ubuntu/transcoder/transcoder/protected/runtime
         - chmod 777 -R /home/ubuntu/transcoder/transcoder/assets
         - mv /home/ubuntu/transcoder/transcoder/CommonPropertiesTest.php /home/ubuntu/transcoder/transcoder/CommonProperties.php
