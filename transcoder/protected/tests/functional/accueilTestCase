@@ -1,0 +1,40 @@
+<?php
+
+class Example extends PHPUnit_Framework_TestCase
+{
+    /**
+     *
+     * @var RemoteWebDriver
+     */
+    protected $webDriver;
+    protected $url = 'http://ebiobanques.local';
+
+    public function setUp() {
+
+
+        $host = 'http://localhost:4444/wd/hub';
+
+        $this->webDriver = RemoteWebDriver::create($host, DesiredCapabilities::chrome());
+    }
+
+    public function open($url) {
+        return $this->webDriver->get($this->url . "/" . $url);
+    }
+
+    public function testMyTestCase() {
+        $this->open("index.php");
+        $element = WebDriverBy('linkText', 'Accueil');
+        $this->assertEquals("Accueil", $this->webDriver->findElement($element)); //("link=Accueil"));
+        $this->assertEquals("Rechercher des échantillons", $this->getText("link=Rechercher des échantillons"));
+        $this->assertEquals("Questions fréquentes", $this->getText("link=Questions fréquentes"));
+        $this->assertEquals("Activités", $this->getText("link=Activités"));
+        $this->assertEquals("Biobanques", $this->getText("link=Biobanques"));
+        $this->assertEquals("Contacts", $this->getText("link=Contacts"));
+        $this->assertEquals("Connexion", $this->getText("link=Connexion"));
+        $this->assertEquals("Nous contacter", $this->getText("link=Nous contacter"));
+        $this->assertEquals("www.biobanques.eu", $this->getText("link=www.biobanques.eu"));
+        $this->assertEquals("ebiobanques.fr : Améliorer la recherche de matériel biologique", $this->getText("css=h3"));
+    }
+
+}
+?>

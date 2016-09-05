@@ -5,5 +5,8 @@
         "phpunit/php-invoker": "*",
         "sebastian/phpcpd": "*",
         "phpmd/phpmd" : "2.0.*"
+    },
+    "require":{
+        "facebook/webdriver":"*"
     }
 }

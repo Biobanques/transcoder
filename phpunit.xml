@@ -30,7 +30,7 @@
         </blacklist>
          <whitelist processUncoveredFilesFromWhitelist="true">
     <directory suffix=".php">./transcoder/protected/models/</directory>
-    <directory suffix=".php">./transcoder/protected/controllers/</directory>
+       <directory suffix=".php">./transcoder/protected/controllers/</directory>
   </whitelist>
     </filter>
 <!--    <selenium>
@@ -40,6 +40,10 @@
   <testsuites>
     <testsuite name="tests unitaires">
       <directory>./transcoder/protected/tests/unit</directory>
+       
+    </testsuite>
+    <testsuite name="tests unitaires">
+      <directory>./transcoder/protected/tests/functional</directory>
        
     </testsuite>
   </testsuites>
