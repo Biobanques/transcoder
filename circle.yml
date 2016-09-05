@@ -14,7 +14,8 @@ database:
 
 general:
   artifacts:
-      -/home/ubuntu/transcoder/transcoder/protected/tests/report/
+      - /home/ubuntu/transcoder/transcoder/protected/tests/report/functional/
+      - /home/ubuntu/transcoder/transcoder/protected/tests/report/unit/
 #test:
 #    post:
 #        - cp -a /home/ubuntu/transcoder/transcoder/protected/tests/report/ $CIRCLE_ARTIFACTS/report/
