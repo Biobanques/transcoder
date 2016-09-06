@@ -79,6 +79,7 @@ class TranscoderMainTest extends FunctionalAbstractClass
         echo "\nTest du transcodage\n";
 
         $this->webDriver->get($this->url . "/index.php?r=adicap/admin");
+        sleep(2);
         $codeOblig_element = WebDriverBy::id("CodeForm_codeOblig");
         $codeFacult_element = WebDriverBy::id("CodeForm_codeFacult");
         $submit = WebDriverBy::name('yt0');
@@ -86,6 +87,8 @@ class TranscoderMainTest extends FunctionalAbstractClass
         $this->webDriver->findElement($codeOblig_element)->sendKeys('FF');
         $this->webDriver->findElement($codeFacult_element)->sendKeys('');
         $this->webDriver->findElement($submit)->click();
+        sleep(2);
+
         $element = WebDriverBy::cssSelector('.result h5');
         $this->assertContains('Le code fourni a été traduit en entier.', $this->webDriver->findElement($element)->getText());
 
@@ -96,6 +99,7 @@ class TranscoderMainTest extends FunctionalAbstractClass
         $this->webDriver->findElement($codeFacult_element)->sendKeys('');
 
         $this->webDriver->findElement($submit)->click();
+        sleep(2);
         $message = $this->webDriver->findElement($element)->getText();
         $this->assertContains('Le code fourni ne peut être traduit, même partiellement.', $this->webDriver->findElement($element)->getText());
 
@@ -104,12 +108,14 @@ class TranscoderMainTest extends FunctionalAbstractClass
         $this->webDriver->findElement($codeFacult_element)->sendKeys('');
 
         $this->webDriver->findElement($submit)->click();
+        sleep(2);
         $this->assertContains('Le code n\'a pas pu être traduit en entier.', $this->webDriver->findElement($element)->getText());
         $this->webDriver->findElement($codeOblig_element)->clear();
         $this->webDriver->findElement($codeOblig_element)->sendKeys('BHFF7730');
         $this->webDriver->findElement($codeFacult_element)->sendKeys('');
 
         $this->webDriver->findElement($submit)->click();
+        sleep(2);
         $this->assertContains('Le code n\'a pas pu être traduit en entier.', $this->webDriver->findElement($element)->getText());
     }
 
@@ -118,6 +124,7 @@ class TranscoderMainTest extends FunctionalAbstractClass
         $this->webDriver->get($this->url . "/index.php?r=adicap/admin");
         $link = WebDriverBy::partialLinkText("API");
         $this->webDriver->findElement($link)->click();
+        sleep(2);
         $element = WebDriverBy::cssSelector('#content>h1');
         $this->assertContains('API', $this->webDriver->findElement($element)->getText());
         $this->assertNotNull($this->webDriver->findElement(Facebook\WebDriver\WebDriverBy::cssSelector('.hljs')));
@@ -128,6 +135,7 @@ class TranscoderMainTest extends FunctionalAbstractClass
         $this->webDriver->get($this->url . "/index.php?r=adicap/admin");
         $link = WebDriverBy::partialLinkText("Groupe de travail");
         $this->webDriver->findElement($link)->click();
+        sleep(2);
         $element = WebDriverBy::cssSelector('#content>h1');
         $this->assertContains('Remerciements', $this->webDriver->findElement($element)->getText());
     }
@@ -137,6 +145,7 @@ class TranscoderMainTest extends FunctionalAbstractClass
         $this->webDriver->get($this->url . "/index.php?r=adicap/admin");
         $link = WebDriverBy::partialLinkText("Documents");
         $this->webDriver->findElement($link)->click();
+        sleep(2);
         $element = WebDriverBy::cssSelector('#content>h1');
         $this->assertContains('Documents utiles', $this->webDriver->findElement($element)->getText());
     }
@@ -146,6 +155,7 @@ class TranscoderMainTest extends FunctionalAbstractClass
         $this->webDriver->get($this->url . "/index.php?r=adicap/admin");
         $link = WebDriverBy::partialLinkText("contact");
         $this->webDriver->findElement($link)->click();
+        sleep(2);
         $element = WebDriverBy::cssSelector('#content>h1');
         $this->assertContains('Contactez nous', $this->webDriver->findElement($element)->getText());
     }
