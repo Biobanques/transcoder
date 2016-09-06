@@ -35,10 +35,10 @@ abstract class FunctionalAbstractClass extends PHPUnit_Framework_TestCase
     public static function setUpBeforeClass() {
         parent::setUpBeforeClass();
         echo "\n" . 'Début des tests' . "\n";
-        // if (CommonProperties::$LAUNCHSELENIUM) {
-        chdir(Yii::app()->basePath . '/data/apps');
-        shell_exec('java -Dwebdriver.chrome.driver=chromedriver -jar selenium-server-standalone-2.53.1.jar >/dev/null 2>/dev/null & sleep 1 &');
-        // }
+        if (CommonProperties::$LAUNCHSELENIUM) {
+            chdir(Yii::app()->basePath . '/data/apps');
+            shell_exec('java -Dwebdriver.chrome.driver=chromedriver -jar selenium-server-standalone-2.53.1.jar >/dev/null 2>/dev/null & sleep 1 &');
+        }
     }
 
     public function setUp() {
@@ -60,8 +60,8 @@ abstract class FunctionalAbstractClass extends PHPUnit_Framework_TestCase
 
     public static function tearDownAfterClass() {
         echo "\n" . 'Arret de selenium' . "\n";
-        // if (CommonProperties::$LAUNCHSELENIUM)
-        shell_exec('fuser -k -n tcp 4444');
+        if (CommonProperties::$LAUNCHSELENIUM)
+            shell_exec('fuser -k -n tcp 4444');
         parent::tearDownAfterClass();
     }
 
