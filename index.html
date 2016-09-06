@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="language" content="en" />
+
+        <!-- blueprint CSS framework -->
+        <link rel="stylesheet" type="text/css" href="/css/screen.css" media="screen, projection" />
+        <link rel="stylesheet" type="text/css" href="/css/print.css" media="print" />
+        <!--[if lt IE 8]>
+        <link rel="stylesheet" type="text/css" href="/css/ie.css" media="screen, projection" />
+        <![endif]-->
+
+        <link rel="stylesheet" type="text/css" href="/css/main.css" />
+        <link rel="stylesheet" type="text/css" href="/css/form.css" />
+        <link rel="stylesheet" type="text/css" href="/css/result.css" />
+
+
+<!--   <link rel="stylesheet" type="text/css" href="/js/highlight/styles/dark.css" />
+<script src="/js/highlight/highlight.pack.js" />
+        -->
+        <!-- avec CDN si besoin d upgrade -->
+        <!--<link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/default.min.css">
+            <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>-->
+
+        <link rel="stylesheet" href="/js/highlight/default.min.css">
+            <script src="/js/highlight/highlight.min.js"></script>
+            <script>hljs.initHighlightingOnLoad();</script>
+            <title>BiobanquesTranscoder</title>
+    </head>
+
+    <body>
+
+        <div class="container" id="page">
+
+            <div id="header">
+                <div style="height: 80px;margin: 2px">
+                    <div style="float: left">
+                        <a href="http://www.biobanques.eu" target="_blank"><img height="80" width="110" src="/images/logobb.png" alt="logo" /></a>
+                    </div><div style="float: left">
+                        <h1><font color="grey">BiobanquesTranscoder</h1>
+                        <h2> Outil de traduction de code Adicap vers CIM-O-3</h2><br>
+                    </div>
+                    <div style="float: right">
+                        En collaboration avec <br>
+                            <a href="http://tumorotek.chu-stlouis.fr" target="_blank"> <img height="30" src="/images/logoTumo.png" alt="logoTumo" /></a>
+                    </div>
+                </div>
+
+
+                <!--Bloc à decommenter pour afficher les flags de changement de langue-->
+                <!--                <div style="float:right;padding-right:20px;padding-top:20px;">
+                                    <div ><a href="./index.php?lang=fr">
+                                </a>
+                                        <a style="padding-left: 10px;" href="./index.php?lang=en">
+                </a>
+                                    </div>
+                                </div> header -->
+                <br>
+                    <div id="mainmenu">
+                        <ul id="yw1">
+<li class="active"><a href="/index.php?r=adicap/admin">Traduire un code ADICAP en CIM-O-3</a></li>
+<li><a href="/index.php?r=site/api">API pour développeurs</a></li>
+<li><a href="/index.php?r=site/thanks">Groupe de travail</a></li>
+<li><a href="/index.php?r=site/docs">Documents utiles</a></li>
+<li><a href="/index.php?r=site/contact">Nous contacter</a></li>
+</ul>                    </div><!-- mainmenu -->
+                                            <!-- breadcrumbs -->
+                    
+                    <div id="content">
+	
+<h2>Traduction d'un code ADICAP</h2>
+
+<div style='border-style: solid;border-width: 1px;border-color: blue;width:100%; margin : '>
+    <h6>Entrez le code ADICAP à traduire.</h6>
+    Le code obligatoire peut être composé de :<br>
+    - 2 caractères : code organe. Exemple : FF .<br>
+    - 4 caractères : code lesion. Exemple : 7730 .<br>
+    - 6 caractères : code organe + code lesion. Exemple : FF7730 .<br>
+    - 8 caractères : code complet Exemple : BHFF7730 .<br><br>
+    Le code facultatif est composé de 7 caractères. En cas de caractères manquants, les remplacer par des *.
+    Exemple : **LR*RP .
+
+
+</div>
+
+
+<div id="search-form" style="text-align: center;margin : 5px;">
+    <div class="form" style="text-align: center">
+    <form id="yw0" action="/index.php?r=adicap/admin" method="post">    <div class="row">        <div style="width:48%;float:left;text-align: right">
+            <div style="float:right;">
+                <label style="text-align:center" for="CodeForm_codeOblig">Code Oblig</label><input size="8" maxlength="8" name="CodeForm[codeOblig]" id="CodeForm_codeOblig" type="text" value="" />  
+            </div>    
+        </div>              
+        <div style="width:48%;float:right;text-align: left">
+
+<div style="float:left;">
+
+            <label style="text-align:center" for="CodeForm_codeFacult">Code Facult</label><input size="8" maxlength="7" name="CodeForm[codeFacult]" id="CodeForm_codeFacult" type="text" value="" /></div>
+             </div>  
+    </div>
+
+
+<div style="width: 100%">
+    <input type="submit" name="yt0" value="Traduire" />
+</div>
+</form></div><!-- search-form --></div><!-- search-form -->
+<h3>Résultat de la traduction :</h3>
+
+
+
+            <div class='result'>
+                <div class='errorSummary' >
+            <h5>Veuillez entrer un code à traduire.</h5>                </div></div><br>
+<div class='result'>
+    <h3>Détail de la traduction :</h3>
+
+
+
+
+
+<!--Fin Affichage data-->
+<!---------------------------------------------------->
+
+
+
+<!--Fin Affichage data-->
+<!---------------------------------------------------->
+
+
+
+<!--Fin Affichage data-->
+<!---------------------------------------------------->
+
+
+
+<!--Fin Affichage data-->
+<!---------------------------------------------------->
+
+
+
+<!--Fin Affichage data-->
+<!---------------------------------------------------->
+
+
+
+<!--Fin Affichage data-->
+<!---------------------------------------------------->
+
+
+
+<!--Fin Affichage data-->
+<!---------------------------------------------------->
+</div></div><!-- content -->
+
+                    <div class="clear"></div>
+
+                    <div id="footer">
+                        Copyright INSERM - Projet <a href='http://www.biobanques.eu'>Biobanques</a> &copy; 2016<br/>
+                        version 1.1                    </div><!-- footer -->
+
+            </div><!-- page -->
+
+    </body>
+</html>

@@ -8,7 +8,7 @@ Class Contributors
      * and open the template in the editor.
      */
 
-    public function getContributors() {
+    public static function getContributors() {
         return array(
             array(
                 'name' => 'Dr Christel DANIEL',

@@ -114,9 +114,7 @@ class TranscoderMainTest extends FunctionalAbstractClass
         $link = WebDriverBy::linkText("Groupe de travail");
         $this->webDriver->findElement($link)->click();
         sleep(2);
-        echo $this->webDriver->getCurrentURL();
-        $element = WebDriverBy::cssSelector('#content>h1');
-
+        $element = WebDriverBy::cssSelector('#content h1');
         $this->assertContains('Remerciements', $this->webDriver->findElement($element)->getText());
     }
 
