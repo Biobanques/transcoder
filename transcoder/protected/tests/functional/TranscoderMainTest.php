@@ -105,16 +105,18 @@ class TranscoderMainTest extends FunctionalAbstractClass
         sleep(2);
         $element = WebDriverBy::cssSelector('#content>h1');
         $this->assertContains('API', $this->webDriver->findElement($element)->getText());
-        $this->assertNotNull($this->webDriver->findElement(Facebook\WebDriver\WebDriverBy::cssSelector('.hljs')));
+        $this->assertNotNull($this->webDriver->findElement(WebDriverBy::cssSelector('.hljs')));
     }
 
     public function testRemerciements() {
         echo 'Test de la page "Remerciements"';
         $this->webDriver->get(Yii::app()->createAbsoluteUrl('adicap/admin'));
-        $link = WebDriverBy::partialLinkText("Groupe de travail");
+        $link = WebDriverBy::linkText("Groupe de travail");
         $this->webDriver->findElement($link)->click();
-        sleep(10);
+        sleep(2);
+        echo $this->webDriver->getCurrentURL();
         $element = WebDriverBy::cssSelector('#content>h1');
+
         $this->assertContains('Remerciements', $this->webDriver->findElement($element)->getText());
     }
 
