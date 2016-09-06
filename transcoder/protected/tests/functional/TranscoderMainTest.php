@@ -22,53 +22,29 @@ class TranscoderMainTest extends FunctionalAbstractClass
     public function testTranscoderHome() {
         echo "Test des éléments de l'interface\n";
         $this->webDriver->get($this->url . "/index.php?r=adicap/admin");
-        // checking that page title contains word 'GitHub'
+        // checking that page title contains word 'BiobanquesTranscoder'
         $this->assertContains('BiobanquesTranscoder', $this->webDriver->getTitle());
 
+        $element = WebDriverBy::linkText("Traduire un code ADICAP en CIM-O-3");
+        $this->assertNotNull($this->webDriver->findElement($element));
 
-        try {
-            $element = WebDriverBy::linkText("Traduire un code ADICAP en CIM-O-3");
-            $this->assertNotNull($this->webDriver->findElement($element));
-        } catch (PHPUnit_Framework_AssertionFailedError $e) {
-            array_push($this->verificationErrors, $e->toString());
-        }
-        try {
-            $element = WebDriverBy::linkText("API pour développeurs");
-            $this->assertNotNull($this->webDriver->findElement($element));
-        } catch (PHPUnit_Framework_AssertionFailedError $e) {
-            array_push($this->verificationErrors, $e->toString());
-        }
-        try {
-            $element = WebDriverBy::linkText("Groupe de travail");
-            $this->assertNotNull($this->webDriver->findElement($element));
-        } catch (PHPUnit_Framework_AssertionFailedError $e) {
-            array_push($this->verificationErrors, $e->toString());
-        }
-        try {
-            $element = WebDriverBy::linkText("Documents utiles");
-            $this->assertNotNull($this->webDriver->findElement($element));
-        } catch (PHPUnit_Framework_AssertionFailedError $e) {
-            array_push($this->verificationErrors, $e->toString());
-        }
-        try {
-            $element = WebDriverBy::linkText("Nous contacter");
-            $this->assertNotNull($this->webDriver->findElement($element));
-        } catch (PHPUnit_Framework_AssertionFailedError $e) {
-            array_push($this->verificationErrors, $e->toString());
-        }
+        $element = WebDriverBy::linkText("API pour développeurs");
+        $this->assertNotNull($this->webDriver->findElement($element));
 
-        try {
-            $element = WebDriverBy::id("CodeForm_codeOblig");
-            $this->assertNotNull($this->webDriver->findElement($element));
-        } catch (PHPUnit_Framework_AssertionFailedError $e) {
-            array_push($this->verificationErrors, $e->toString());
-        }
-        try {
-            $element = WebDriverBy::id("CodeForm_codeFacult");
-            $this->assertNotNull($this->webDriver->findElement($element));
-        } catch (PHPUnit_Framework_AssertionFailedError $e) {
-            array_push($this->verificationErrors, $e->toString());
-        }
+        $element = WebDriverBy::linkText("Groupe de travail");
+        $this->assertNotNull($this->webDriver->findElement($element));
+
+        $element = WebDriverBy::linkText("Documents utiles");
+        $this->assertNotNull($this->webDriver->findElement($element));
+
+        $element = WebDriverBy::linkText("Nous contacter");
+        $this->assertNotNull($this->webDriver->findElement($element));
+
+        $element = WebDriverBy::id("CodeForm_codeOblig");
+        $this->assertNotNull($this->webDriver->findElement($element));
+
+        $element = WebDriverBy::id("CodeForm_codeFacult");
+        $this->assertNotNull($this->webDriver->findElement($element));
     }
 
     /**
