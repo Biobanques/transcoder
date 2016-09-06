@@ -42,12 +42,12 @@ abstract class FunctionalAbstractClass extends PHPUnit_Framework_TestCase
     }
 
     public function setUp() {
-
+        echo "\n" . 'Création du webdriver' . "\n";
         $host = 'http://localhost:4444/wd/hub';
         try {
             $this->webDriver = RemoteWebDriver::create($host, DesiredCapabilities::chrome());
         } catch (Exception $ex) {
-            echo 'Setting of webdriver fails : ' . $ex . getMessage() . $ex->getTraceAsString();
+            echo 'Setting of webdriver fails : ' . $ex->getMessage() . $ex->getTraceAsString();
         }
     }
 
