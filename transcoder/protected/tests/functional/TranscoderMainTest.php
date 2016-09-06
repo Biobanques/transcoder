@@ -21,7 +21,7 @@ class TranscoderMainTest extends FunctionalAbstractClass
      */
     public function testTranscoderHome() {
         echo "Test des éléments de l'interface\n";
-        echo(Yii::app()->createUrl('adicap/admin'));
+
         $this->webDriver->get(Yii::app()->createAbsoluteUrl('adicap/admin'));
 
         // checking that page title contains word 'BiobanquesTranscoder'
@@ -113,7 +113,7 @@ class TranscoderMainTest extends FunctionalAbstractClass
         $this->webDriver->get(Yii::app()->createAbsoluteUrl('adicap/admin'));
         $link = WebDriverBy::partialLinkText("Groupe de travail");
         $this->webDriver->findElement($link)->click();
-        sleep(2);
+        sleep(10);
         $element = WebDriverBy::cssSelector('#content>h1');
         $this->assertContains('Remerciements', $this->webDriver->findElement($element)->getText());
     }
