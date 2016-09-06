@@ -19,8 +19,8 @@ dependencies:
       - wget http://selenium-release.storage.googleapis.com/2.44/selenium-server-standalone-2.44.0.jar
       - java -jar selenium-server-standalone-2.44.0.jar:
             background: true
-      - cp ~/transcoder/transcoder/protected/data/CI/transcoder_apache_config.conf /etc/apache2/sites-available
-      - a2ensite transcoder_apache_config.conf
+      - sudo cp ~/transcoder/transcoder/protected/data/CI/transcoder_apache_config.conf /etc/apache2/sites-available
+      - sudo a2ensite transcoder_apache_config.conf
       - sudo service apache2 restart
 general:
   artifacts:
