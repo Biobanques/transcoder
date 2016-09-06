@@ -13,7 +13,16 @@ machine:
 database:
   override:
     - mysql -u ubuntu circle_test < /home/ubuntu/transcoder/transcoder/protected/data/dump_transcoder_v0.1.sql
+dependencies:
+  override:
+    - curl -L -o google-chrome.deb https://s3.amazonaws.com/circle-downloads/google-chrome-stable_current_amd64_47.0.2526.73-1.deb
+    - sudo dpkg -i google-chrome.deb
+    - sudo sed -i 's|HERE/chrome\"|HERE/chrome\" --disable-setuid-sandbox|g' /opt/google/chrome/google-chrome
+    - rm google-chrome.deb
 
+test:
+  pre:
+    - google-chrome --version
 general:
   artifacts:
       - /home/ubuntu/transcoder/transcoder/protected/tests/report/functional/
