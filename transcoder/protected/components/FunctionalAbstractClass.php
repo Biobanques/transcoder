@@ -30,22 +30,25 @@ abstract class FunctionalAbstractClass extends PHPUnit_Framework_TestCase
         $this->verificationErrors = $verificationErrors;
     }
 
-    public function getWebDriver() {
-        return $this->webDriver;
-    }
-
-    public function setWebDriver(RemoteWebDriver $webDriver) {
-        $this->webDriver = $webDriver;
-    }
-
     protected $url = 'http://transcoder.local';
 
-    public function setUp() {
+    public static function setUpBeforeClass() {
+        parent::setUpBeforeClass();
         echo "\n" . 'Début des tests' . "\n";
+        // if (CommonProperties::$LAUNCHSELENIUM) {
         chdir(Yii::app()->basePath . '/data/apps');
         shell_exec('java -Dwebdriver.chrome.driver=chromedriver -jar selenium-server-standalone-2.53.1.jar >/dev/null 2>/dev/null & sleep 1 &');
+        // }
+    }
+
+    public function setUp() {
+
         $host = 'http://localhost:4444/wd/hub';
-        $this->setWebDriver(RemoteWebDriver::create($host, DesiredCapabilities::chrome()));
+        try {
+            $this->webDriver = RemoteWebDriver::create($host, DesiredCapabilities::chrome());
+        } catch (Exception $ex) {
+            echo 'Setting of webdriver fails : ' . $ex . getMessage() . $ex->getTraceAsString();
+        }
     }
 
     public function tearDown() {
@@ -53,9 +56,13 @@ abstract class FunctionalAbstractClass extends PHPUnit_Framework_TestCase
 
         echo "\n" . 'Quitte le webdriver' . "\n";
         $this->webDriver->quit();
+    }
 
+    public static function tearDownAfterClass() {
         echo "\n" . 'Arret de selenium' . "\n";
-        $this->webDriver->get('http://localhost:4444/selenium-server/driver?cmd=shutDownSeleniumServer');
+        // if (CommonProperties::$LAUNCHSELENIUM)
+        shell_exec('fuser -k -n tcp 4444');
+        parent::tearDownAfterClass();
     }
 
 }
