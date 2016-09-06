@@ -12,4 +12,5 @@ class CommonProperties
     static $CONNECTIONUSER = "root";
     static $CONNECTIONPASSWORD = "root";
     static $LAUNCHSELENIUM = true;
+    static $SERVERTESTURL = 'transcoder.local';
 }

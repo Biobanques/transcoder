@@ -6,6 +6,9 @@ return CMap::mergeArray(
                 'fixture' => array(
                     'class' => 'system.test.CDbFixtureManager',
                 ),
+                'urlManager' => array(
+                    'baseUrl' => CommonProperties::$SERVERTESTURL
+                )
             ),
             'params' => array(
                 // this is used in contact page

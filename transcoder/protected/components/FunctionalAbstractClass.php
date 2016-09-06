@@ -30,7 +30,7 @@ abstract class FunctionalAbstractClass extends PHPUnit_Framework_TestCase
         $this->verificationErrors = $verificationErrors;
     }
 
-    protected $url = 'http://transcoder.local';
+    protected $url;
 
     public static function setUpBeforeClass() {
         parent::setUpBeforeClass();
@@ -42,6 +42,7 @@ abstract class FunctionalAbstractClass extends PHPUnit_Framework_TestCase
     }
 
     public function setUp() {
+        $this->url = Yii::app()->baseUrl;
         echo "\n" . 'Création du webdriver' . "\n";
         $host = 'http://localhost:4444/wd/hub';
         try {

@@ -10,4 +10,5 @@ class CommonProperties
     static $CONNECTIONUSER = "ubuntu";
     static $CONNECTIONPASSWORD = null;
     static $LAUNCHSELENIUM = false;
+    static $SERVERTESTURL = 'transcoder.local:8080';
 }

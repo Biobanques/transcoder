@@ -21,7 +21,9 @@ class TranscoderMainTest extends FunctionalAbstractClass
      */
     public function testTranscoderHome() {
         echo "Test des éléments de l'interface\n";
-        $this->webDriver->get($this->url . "/index.php?r=adicap/admin");
+        echo(Yii::app()->createUrl('adicap/admin'));
+        $this->webDriver->get(Yii::app()->createAbsoluteUrl('adicap/admin'));
+
         // checking that page title contains word 'BiobanquesTranscoder'
         $this->assertContains('BiobanquesTranscoder', $this->webDriver->getTitle());
 
@@ -54,7 +56,7 @@ class TranscoderMainTest extends FunctionalAbstractClass
 
         echo "\nTest du transcodage\n";
 
-        $this->webDriver->get($this->url . "/index.php?r=adicap/admin");
+        $this->webDriver->get(Yii::app()->createAbsoluteUrl('adicap/admin'));
         sleep(2);
         $codeOblig_element = WebDriverBy::id("CodeForm_codeOblig");
         $codeFacult_element = WebDriverBy::id("CodeForm_codeFacult");
@@ -97,7 +99,7 @@ class TranscoderMainTest extends FunctionalAbstractClass
 
     public function testApi() {
         echo 'Test de la page "API"';
-        $this->webDriver->get($this->url . "/index.php?r=adicap/admin");
+        $this->webDriver->get(Yii::app()->createAbsoluteUrl('adicap/admin'));
         $link = WebDriverBy::partialLinkText("API");
         $this->webDriver->findElement($link)->click();
         sleep(2);
@@ -108,7 +110,7 @@ class TranscoderMainTest extends FunctionalAbstractClass
 
     public function testRemerciements() {
         echo 'Test de la page "Remerciements"';
-        $this->webDriver->get($this->url . "/index.php?r=adicap/admin");
+        $this->webDriver->get(Yii::app()->createAbsoluteUrl('adicap/admin'));
         $link = WebDriverBy::partialLinkText("Groupe de travail");
         $this->webDriver->findElement($link)->click();
         sleep(2);
@@ -118,7 +120,7 @@ class TranscoderMainTest extends FunctionalAbstractClass
 
     public function testDocsUtiles() {
         echo 'Test de la page "Documents utiles"';
-        $this->webDriver->get($this->url . "/index.php?r=adicap/admin");
+        $this->webDriver->get(Yii::app()->createAbsoluteUrl('adicap/admin'));
         $link = WebDriverBy::partialLinkText("Documents");
         $this->webDriver->findElement($link)->click();
         sleep(2);
@@ -128,7 +130,7 @@ class TranscoderMainTest extends FunctionalAbstractClass
 
     public function testContact() {
         echo 'Test de la page "Contact"';
-        $this->webDriver->get($this->url . "/index.php?r=adicap/admin");
+        $this->webDriver->get(Yii::app()->createAbsoluteUrl('adicap/admin'));
         $link = WebDriverBy::partialLinkText("contact");
         $this->webDriver->findElement($link)->click();
         sleep(2);
