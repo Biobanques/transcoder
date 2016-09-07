@@ -43,7 +43,7 @@ abstract class FunctionalAbstractClass extends PHPUnit_Framework_TestCase
                     break;
                 default: $desiredCapabilities = DesiredCapabilities::chrome();
             }
-            FunctionalAbstractClass::$webDriver = RemoteWebDriver::create($host, $desiredCapabilities);
+            FunctionalAbstractClass::$webDriver = ::create($host, $desiredCapabilities);
         } catch (Exception $ex) {
             echo 'Setting of webdriver fails : ' . $ex->getMessage() . $ex->getTraceAsString();
         }

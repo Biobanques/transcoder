@@ -15,6 +15,7 @@ class CommonProperties
      * Browser used for functional testing. chrome and firefox implmented
      * @var String
      * Available values : chrome firefox
+     * For CircleCI Tests, leave this to 'chrome'
      */
     static $TESTBROWSER = 'chrome';
 }
