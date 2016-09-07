@@ -44,12 +44,31 @@ class AdicapControllerTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($controller != null);
         $this->assertInstanceOf('AdicapController', $controller);
         $this->assertTrue($controller->modelForm == null);
+        ob_start();
         $controller->actionWsSearch();
+        ob_end_clean();
         $this->assertTrue($controller->modelForm != null);
-        $_GET['CodeForm'] = array('codeOblig' => null, 'codeFacult' => null);
+        $_GET['CodeForm'] = array('code' => null, 'codeFac' => null);
+        ob_start();
         $controller->actionWsSearch();
+        $output = ob_get_clean();
         $this->assertTrue($controller->modelForm != null);
         $this->assertTrue($controller->viewData == null);
+        $this->assertJson($output);
+        $_GET['CodeForm'] = array('code' => 'BHFF7730', 'codeFac' => null);
+        ob_start();
+        $controller->actionWsSearch();
+        $output = ob_get_clean();
+        $this->assertTrue($controller->modelForm != null);
+        $this->assertTrue($controller->viewData == null);
+        $this->assertJson($output);
+        $_GET['CodeForm'] = array('code' => 'BHFF7730', 'codeFac' => '**LR*RP');
+        ob_start();
+        $controller->actionWsSearch();
+        $output = ob_get_clean();
+        $this->assertTrue($controller->modelForm != null);
+        $this->assertTrue($controller->viewData == null);
+        $this->assertJson($output);
     }
 
 }

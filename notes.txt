@@ -49,6 +49,15 @@ mysql -utcUser -ptc@mypass transcoder < /home/ubuntu/transcoder/transcoder/prote
 Les identifiants de connexions (tcUser / tc@mypass) à la base de données peuvent être modifiés. Ne pas oublier de les modifier également dans le fichier CommonProperties.php
 
 #Tests unitaires et fonctionnels
+##ATTENTION##
+Le bon focntionnement des tests fonctionnels dépend de la compatibilité entre le navigateur et le serveur Selenium.
+Configurations fonctionnelles : 
+selenium-server-standalone 2.53.1 + chromedriver 2.23 + chrome 52.0
+selenium-server-standalone 2.53.1 + firefox 48.0
+selenium-server-standalone 2.44.0 + chrome 50.0
+
+
+
 
 Pour lancer les tests, dans le repertoire racine du projet (/var/www/transcoder), lancer la commande 
 phpunit

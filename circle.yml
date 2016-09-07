@@ -28,8 +28,9 @@ dependencies:
       - sudo service apache2 restart
 general:
   artifacts:
-      - /home/ubuntu/transcoder/transcoder/protected/tests/report/functional/
-      - /home/ubuntu/transcoder/transcoder/protected/tests/report/unit/
+      - /home/ubuntu/transcoder/transcoder/protected/tests/report/coverage/dashboard.html
+      - /home/ubuntu/transcoder/transcoder/protected/tests/report/coverage/index.html
+      - /home/ubuntu/transcoder/transcoder/protected/tests/report/results/result_junit.xml
       - /home/ubuntu/transcoder/transcoder/protected/runtime/application.log
       - /var/log/apache2/transcoder.error_log
       

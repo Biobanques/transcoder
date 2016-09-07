@@ -50,7 +50,6 @@
 <logging>
   <log type="coverage-html" target="./transcoder/protected/tests/report/coverage" lowUpperBound="35"
        highLowerBound="70"/>
-  <log type="json" target="./transcoder/protected/tests/report/results/results_json.json" logIncompleteSkipped="true"/>
-  <log type="junit" target="./transcoder/protected/tests/report/results/results_junit.xml" logIncompleteSkipped="true"/>
+   <log type="junit" target="./transcoder/protected/tests/report/results/results_junit.xml" logIncompleteSkipped="true"/>
 </logging>
 </phpunit>

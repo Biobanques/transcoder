@@ -21,9 +21,14 @@ abstract class FunctionalAbstractClass extends PHPUnit_Framework_TestCase
      */
     protected static $webDriver;
 
+    /**
+     * Launch selenium server in local functional testing
+     * Init driver for functional testing, depending of selected browser
+     */
     public static function setUpBeforeClass() {
         parent::setUpBeforeClass();
-        echo "\n" . 'Début des tests' . "\n";
+        echo "\n" . 'Début des tests fonctionnels' . "\n"
+        . "Navigateur utilisé : " . CommonProperties::$TESTBROWSER . "\n";
         if (CommonProperties::$LAUNCHSELENIUM) {
             chdir(Yii::app()->basePath . '/data/apps');
             shell_exec('java -Dwebdriver.chrome.driver=chromedriver -jar selenium-server-standalone-2.53.1.jar >/dev/null 2>/dev/null & sleep 1 &');
@@ -43,36 +48,10 @@ abstract class FunctionalAbstractClass extends PHPUnit_Framework_TestCase
                     break;
                 default: $desiredCapabilities = DesiredCapabilities::chrome();
             }
-            FunctionalAbstractClass::$webDriver = ::create($host, $desiredCapabilities);
+            FunctionalAbstractClass::$webDriver = RemoteWebDriver::create($host, $desiredCapabilities);
         } catch (Exception $ex) {
             echo 'Setting of webdriver fails : ' . $ex->getMessage() . $ex->getTraceAsString();
         }
-    }
-
-    public function setUp() {
-//        $this->url = Yii::app()->baseUrl;
-//        echo "\n" . 'Création du webdriver' . "\n";
-//        $host = 'http://localhost:4444/wd/hub';
-//
-//        try {
-//            $desiredCapabilities = DesiredCapabilities::chrome();
-//            switch (CommonProperties::$TESTBROWSER) {
-//                case 'chrome';
-//                    $desiredCapabilities = DesiredCapabilities::chrome();
-//                case 'firefox';
-//                    $desiredCapabilities = DesiredCapabilities::firefox();
-//            }
-//            $this->webDriver = RemoteWebDriver::create($host, $desiredCapabilities);
-//        } catch (Exception $ex) {
-//            echo 'Setting of webdriver fails : ' . $ex->getMessage() . $ex->getTraceAsString();
-//        }
-    }
-
-    public function tearDown() {
-
-
-        echo "\n" . 'Quitte le webdriver' . "\n";
-        //$this->webDriver->quit();
     }
 
     public static function tearDownAfterClass() {
