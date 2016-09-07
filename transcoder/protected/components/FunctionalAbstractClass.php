@@ -33,12 +33,15 @@ abstract class FunctionalAbstractClass extends PHPUnit_Framework_TestCase
         $host = 'http://localhost:4444/wd/hub';
 
         try {
-            $desiredCapabilities = DesiredCapabilities::chrome();
+
             switch (CommonProperties::$TESTBROWSER) {
                 case 'chrome';
                     $desiredCapabilities = DesiredCapabilities::chrome();
+                    break;
                 case 'firefox';
                     $desiredCapabilities = DesiredCapabilities::firefox();
+                    break;
+                default: $desiredCapabilities = DesiredCapabilities::chrome();
             }
             FunctionalAbstractClass::$webDriver = RemoteWebDriver::create($host, $desiredCapabilities);
         } catch (Exception $ex) {
