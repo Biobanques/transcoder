@@ -16,5 +16,5 @@ class CommonProperties
      * @var String
      * Available values : chrome firefox
      */
-    static $TESTBROWSER = 'firefox';
+    static $TESTBROWSER = 'chrome';
 }
