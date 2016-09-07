@@ -1,56 +1,58 @@
--- install yii from scratch
-/data/developpement/workspace_zend_eclipse_php/transcoder/transcoder/yii-1.1.14/framework/yiic webapp /data/developpement/workspace_zend_eclipse_php/transcoder/transcoder
---creer un alias de dir dans sites-enabled
-vi /etc/apache2/site-enabled/000-default
+#Chargement des dépendances par composer
+-- Se placer à la racine du projet
+cd /var/www/transcoder/
+composer update
 
--- sous environnements unix, ne pas oublier de mettre les droits d ecriture sur le repertoires runtime et assets
-nicolas$ cd protected/
-nicolas$ sudo chmod ugo+rwx runtime/
-nicolas$ sudo chmod ugo+rwx ../assets/
+-- Créer les repertoires assets et runtime, avec les droits en ecriture, et mettre les droits de lecture et d'execution sur selenium et le driver chrome (tests fonctionnels en local)
+ cd ./transcoder/protected/
+ sudo mkdir -p ./runtime
+ sudo mkdir -p ./assets
+ sudo chmod ugo+rwx ./runtime/
+ sudo chmod ugo+rwx ../assets/
+ sudo chmod ugo+r-x -R ./data/apps
 
---
-Alias /transcoder "/Users/nicolas/NetBeansProjects/transcoder/transcoder/"
-<Directory "/Users/nicolas/NetBeansProjects/transcoder/transcoder/">
+
+##Ajout de l'application au serveur apache (version 2.4)
+-- Créer le fichier /etc/apache2/sites-available/transcoder.conf, avec le contenu suivant :
+
+<VirtualHost *:8080>
+
+DocumentRoot /home/ubuntu/transcoder/transcoder
+ErrorLog "/var/log/apache2/transcoder.error.log"
+
+ServerName transcoder.local
+<Directory "/home/ubuntu/transcoder/">
 	Options FollowSymLinks Indexes
 	AllowOverride all
-	Order allow,deny
-	allow from all
-	#deny from all
+	Require all granted
 	AddDefaultCharset utf-8 
 </Directory>
+</VirtualHost>
 
---ATTENTION--
-si la version apache2 est >=2.4, remplacer
-	Order allow,deny
-	allow from all
-	#deny from all
-	
-	par
-	granted all require
+-- Ajouter la configuration à Apache
+a2ensite transcoder.conf
+
+--Relancer Apache
+sudo service apache2 restart
+
+##Base de données mysql
 
 -- ajouter le user mysql
 mysql> CREATE USER 'tcUser'@'localhost' IDENTIFIED BY 'tc@mypass';
 mysql> GRANT ALL PRIVILEGES ON *.* TO 'tcUser'@'localhost'
          WITH GRANT OPTION;
 
-----Pour la mise en palce des tests
---Téléchargement du serveur selenium standalone
-http://selenium-release.storage.googleapis.com/2.41/selenium-server-standalone-2.41.0.jar
+-- Ajouter le dump de la base de données
+mysql -utcUser -ptc@mypass transcoder < /home/ubuntu/transcoder/transcoder/protected/data/dump_transcoder_v0.1.sql
 
---installer phpunit : 
-sudo pear channel-discover pear.phpunit.de
+##ATTENTION##
+Les identifiants de connexions (tcUser / tc@mypass) à la base de données peuvent être modifiés. Ne pas oublier de les modifier également dans le fichier CommonProperties.php
 
-sudo pear install -f phpunit/PHPUnit-3.7.0
-sudo pear install -f phpunit/phpunit_story
-sudo pear install -f phpunit/phpunit_selenium
-sudo pear install -f phpunit/dbunit
+#Tests unitaires et fonctionnels
 
+Pour lancer les tests, dans le repertoire racine du projet (/var/www/transcoder), lancer la commande 
+phpunit
 
-Code coverage
-sudo pecl install -f xdebug 
+Les résultats des tests se trouvent dans le dossier /protected/tests/report/
 
-Des modifications de configurations sont à faire dans les fichiers scripts/launchTests.sh et /protected/tests/phpunit.xml
-
---appliquer les scripts en prod :
-source /var/www/vhosts/de1185.ispfr.net/transcoderapp/protected/data/dump_transcoder_v0.1.sql
  

@@ -19,18 +19,7 @@ abstract class FunctionalAbstractClass extends PHPUnit_Framework_TestCase
     /**
      * @var RemoteWebDriver
      */
-    protected $webDriver;
-    protected $verificationErrors = array();
-
-    function getVerificationErrors() {
-        return $this->verificationErrors;
-    }
-
-    function setVerificationErrors($verificationErrors) {
-        $this->verificationErrors = $verificationErrors;
-    }
-
-    protected $url;
+    protected static $webDriver;
 
     public static function setUpBeforeClass() {
         parent::setUpBeforeClass();
@@ -39,27 +28,52 @@ abstract class FunctionalAbstractClass extends PHPUnit_Framework_TestCase
             chdir(Yii::app()->basePath . '/data/apps');
             shell_exec('java -Dwebdriver.chrome.driver=chromedriver -jar selenium-server-standalone-2.53.1.jar >/dev/null 2>/dev/null & sleep 1 &');
         }
-    }
 
-    public function setUp() {
-        $this->url = Yii::app()->baseUrl;
         echo "\n" . 'Création du webdriver' . "\n";
         $host = 'http://localhost:4444/wd/hub';
+
         try {
-            $this->webDriver = RemoteWebDriver::create($host, DesiredCapabilities::chrome());
+            $desiredCapabilities = DesiredCapabilities::chrome();
+            switch (CommonProperties::$TESTBROWSER) {
+                case 'chrome';
+                    $desiredCapabilities = DesiredCapabilities::chrome();
+                case 'firefox';
+                    $desiredCapabilities = DesiredCapabilities::firefox();
+            }
+            FunctionalAbstractClass::$webDriver = RemoteWebDriver::create($host, $desiredCapabilities);
         } catch (Exception $ex) {
             echo 'Setting of webdriver fails : ' . $ex->getMessage() . $ex->getTraceAsString();
         }
+    }
+
+    public function setUp() {
+//        $this->url = Yii::app()->baseUrl;
+//        echo "\n" . 'Création du webdriver' . "\n";
+//        $host = 'http://localhost:4444/wd/hub';
+//
+//        try {
+//            $desiredCapabilities = DesiredCapabilities::chrome();
+//            switch (CommonProperties::$TESTBROWSER) {
+//                case 'chrome';
+//                    $desiredCapabilities = DesiredCapabilities::chrome();
+//                case 'firefox';
+//                    $desiredCapabilities = DesiredCapabilities::firefox();
+//            }
+//            $this->webDriver = RemoteWebDriver::create($host, $desiredCapabilities);
+//        } catch (Exception $ex) {
+//            echo 'Setting of webdriver fails : ' . $ex->getMessage() . $ex->getTraceAsString();
+//        }
     }
 
     public function tearDown() {
 
 
         echo "\n" . 'Quitte le webdriver' . "\n";
-        $this->webDriver->quit();
+        //$this->webDriver->quit();
     }
 
     public static function tearDownAfterClass() {
+        FunctionalAbstractClass::$webDriver->quit();
         echo "\n" . 'Arret de selenium' . "\n";
         if (CommonProperties::$LAUNCHSELENIUM)
             shell_exec('fuser -k -n tcp 4444');

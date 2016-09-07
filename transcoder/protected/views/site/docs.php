@@ -9,12 +9,12 @@
 
     foreach ($listFiles as $file) {
         if ($file != '.' && $file != '..') {
-            if (!is_dir(Yii::app()->params->docsPath . $file)) {
-
+            if (!is_dir(Yii::app()->params->docsPath . $file)) { //N'affiche pas les sous dossiers
                 echo '<li>' . CHtml::link($file, Yii::app()->createUrl('site/download', array('file' => $file))) . '</li>';
-            } else if ($file != 'apps') {//remove apps files
-                echo '<li>' . CHtml::link("&ltREP&gt  $file  &ltREP&gt", Yii::app()->createUrl('site/docs', array('file' => $file))) . '</li>';
             }
+//            else if ($file != 'apps') {//remove apps files
+//                echo '<li>' . CHtml::link("&ltREP&gt  $file  &ltREP&gt", Yii::app()->createUrl('site/docs', array('file' => $file))) . '</li>';
+//            }
         }
     }
     ?>
